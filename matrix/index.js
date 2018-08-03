@@ -15,6 +15,45 @@
 //     [11, 16, 15, 6],
 //     [10,  9,  8, 7]]
 
-function matrix(n) {}
+function matrix(n) {
+    results = [];
+    for(i=0;i<n;i++){
+        results.push([]);
+    }
+    let counter = 1;
+    let startColumn = 0;
+    let endColumn = n-1;
+    let startRow = 0;
+    let endRow = n-1;
+
+    while(startColumn <= endColumn && startRow <= endRow){
+
+        for(i=startColumn;i<=endColumn;i++){
+            results[startRow][i] = counter;
+            counter++;
+        }
+        startRow = startRow + 1;
+
+        for(i=startRow;i<=endRow;i++){
+         results[i][endColumn] = counter;
+         counter++;   
+        }
+
+        endColumn = endColumn -1;
+
+        for(i=endColumn; i>=startColumn;i--){
+            results[endRow][i] = counter;
+            counter++;
+        }
+        endRow = endRow -1;
+
+        for(i=endRow;i>=startRow;i--){
+            results[i][startColumn] = counter;
+            counter++;
+        }
+        startColumn = startColumn + 1;
+    }
+    return results;
+}
 
 module.exports = matrix;
